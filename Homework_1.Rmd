@@ -1,0 +1,43 @@
+---
+title: "Assignment 1"
+author: "Mathew Zbitniff"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+
+
+First, we load the data. Notice that we use the "here" function. 
+```{r}
+library("here")
+mydata<-read.csv(here("Homework 1", "hyper.csv"))
+head(mydata)
+```
+
+Now since we have the data loaded properly, we can start the analysis:
+
+```{r}
+ncol(mydata)
+nrow(mydata)
+sum(is.na(mydata))
+nrow(mydata[rowSums(is.na(mydata)) > 0,])
+```
+The above results tell us that in our data we have 5 columns and 1000 rows, there are 453 NA's within 307 rows. 
+
+
+
+Now, we check the summary of the data:
+
+```{r}
+summary(mydata)
+```
+
+
+# ```{r, echo = F, fig.dim = c(9, 9)}
+# summary(mydata)
+# pairs(mydata, panel=panel.smooth)
+# ```
+
+#need to figure out how to comment so wont show up in pdf
+
+
