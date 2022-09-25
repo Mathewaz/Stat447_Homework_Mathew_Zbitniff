@@ -2,11 +2,7 @@
 
 
 
-# Hyper.csv Exploratory data analysis. 
-## Installation
-```
-install.packages("lboxcox")
-```
+# Hyper Exploratory data analysis. 
 
 ## Introduction
 The purpose of this repository store STAT 447 Assignment one, which is to create an EDA for a subset of the hyper data set. The R mark down report saved in this reopsitory explores the hyper data set throgugh numerical and graphical means. 
