@@ -13,7 +13,7 @@ The `hyper` data frame that comes with this package has 1000 rows and 5 columns.
 ---
 ## Directory Layout
 
-The root directory of the repository is `lboxcox`. The folder structure of `lboxcox` is as follows
+The root directory of the repository is `Stat447_Homework_Mathew_Zbitniff`. The folder structure of `Stat447_Homework_Mathew_Zbitniff` is as given below:
 
 <details><summary>Stat447_Homework_Mathew_Zbitniff</summary>
 	
