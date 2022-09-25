@@ -15,13 +15,13 @@ The `hyper` data frame that comes with this package has 1000 rows and 5 columns.
 
 The root directory of the repository is `lboxcox`. The folder structure of `lboxcox` is as follows
 
-<details><summary>lboxcox</summary>
+<details><summary>Stat447_Homework_Mathew_Zbitniff</summary>
 	
 	lboxcox/
 	├── data
 	│   └── hypder.csv
 	└──  RMD_files
-      └──Homework_1
+            └──Homework_1
 	 
 </details>
 
