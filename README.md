@@ -21,7 +21,7 @@ The root directory of the repository is `Stat447_Homework_Mathew_Zbitniff`. The 
 	├── data
 	│   └── hypder.csv
 	├──  RMD_files
-        │   └──Homework_1.Rmd
+	│   └──Homework_1.Rmd
 	└── Reports
             └──Homework_1.pdf
 	 
