@@ -1,0 +1,163 @@
+---
+title: "Assignment 1"
+author: "Mathew Zbitniff"
+date: "`r Sys.Date()`"
+output: pdf_document
+---
+
+## a)
+
+  First, we load the data. Notice that we use the "here" function. Using the "here" function is a good reproducible research practice. 
+  
+  
+```{r}
+library("here")
+mydata<-read.csv(here("hyper.csv"))
+```
+
+
+Some overveiw:
+
+```{r}
+head(mydata)
+str(mydata)
+```
+
+Since we have the data loaded properly, we can start cleaning it up. Notice above the NA's in our data, let's check how many we have and how big our data set is:
+
+```{r}
+ncol(mydata)
+nrow(mydata)
+sum(is.na(mydata))
+nrow(mydata[rowSums(is.na(mydata)) > 0,])
+colSums(is.na(mydata))
+colSums(is.na(mydata))/(dim(mydata)[1])
+```
+The above results tell us that in our data we have 5 columns and 1000 rows, and there are 453 NA's within 307 rows. Most of the NA's are located in the hypertension column (it is almost 30% NA's). since we have not covered how to replace missing data, we simply remove The NA's. We will still have 693 observations, which should be plenty. 
+
+
+```{r, echo = F}
+mydata<-na.omit(mydata)
+```
+
+## b)
+
+Now, we check for potential errors:
+```{r}
+c(min(mydata$age_mn),max(mydata$age_mn))
+c(min(mydata$gender),max(mydata$gender))
+c(min(mydata$hypertension),max(mydata$hypertension))
+c(min(mydata$bmi),max(mydata$bmi))
+```
+
+Based on our data, these are the expected max and min values for each variable. So we do not see any errors. 
+
+## c)
+
+Since there are no errors and no more NA's, we can assign our categorical variable's:
+
+```{r}
+mydata$gender<-as.factor(mydata$gender)
+mydata$bmi<-as.factor(mydata$bmi)
+mydata$hypertension<-as.factor(mydata$hypertension)
+```
+
+Now that the variables are properly defined, we can look at the summary statistics:
+
+```{r}
+summary(mydata)
+```
+
+
+Now, lets look at a few more things like Central tendency, Spread,  proportion, normality, and occurrences of variables. 
+
+
+# Continous varible:
+```{r}
+IQR(mydata$age_mn)
+```
+
+# Categorical varibles:
+
+```{r}
+table(mydata$gender)
+table(mydata$hypertension)
+table(mydata$bmi)
+
+```
+
+
+
+```{r}
+100*table(mydata$gender)/length(mydata$gender)
+100*table(mydata$hypertension)/length(mydata$hypertension)
+100*table(mydata$bmi)/length(mydata$bmi)
+```
+
+Note relative even spread from age_mn and bmi. 
+
+
+# Graphical Display for the Continuous Variable:
+
+
+```{r}
+boxplot(mydata$age_mn, main = "age_mn")
+par(mfrow = c(1, 2))
+hist(mydata$age_mn, main = "age_mn")
+hist(mydata$age_mn, main = "age_mn", prob = 1)
+lines(density(mydata$age_mn))
+```
+
+
+Note the higher frequency of younger ages. 
+
+# Graphical Display for the Categorical Variables:
+
+```{r}
+par(mfrow = c(1, 3))
+mytable_gender <- table(mydata$gender)
+plot(mytable_gender)
+mytable_hypertension <- table(mydata$hypertension)
+plot(mytable_hypertension)
+mytable_bmi <- table(mydata$bmi)
+plot(mytable_bmi)
+```
+
+
+
+Note that our previous tables told us the same info!
+
+Here is another visualization for the bmi variable
+
+```{r}
+mosaicplot(mytable_bmi, col= c(names(mytable_bmi)), margin = T, main = "")
+```
+
+
+Note the most common bmi status is normal. 
+
+## Relationships between variables 
+```{r}
+par(mfrow = c(1, 2))
+boxplot(mydata$age_mn ~ mydata$hypertension)
+boxplot(mydata$age_mn ~ mydata$bmi)
+```
+We see that the older one is, the more likely they are to have hypertension. Also, we see that lower age is correlated with higher bmi. 
+
+
+```{r}
+par(mfrow = c(1, 2))
+
+mytable1 <- table(mydata$gender, mydata$hypertension)
+mosaicplot(mytable1, col = c("light blue", "orange"), main = "")
+
+mytable2 <- table(mydata$bmi, mydata$hypertension)
+mosaicplot(mytable2, col = c("light blue", "orange"), main = "")
+```
+
+The first graphs tell us that males and females experience hypertension at a similar rate, the second graph tells us that the higher one bmi is, the higher the chance they'll have hypertension.
+
+
+## Conclusion
+
+At this point, we have cleaned our data and checked for errors. We also have a good idea about the relationships between the different variables. We are now ready to do future analysis and modeling on this data.
