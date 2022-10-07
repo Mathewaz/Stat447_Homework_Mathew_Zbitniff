@@ -10,9 +10,12 @@ output: pdf_document
   First, we load the data. Notice that we use the "here" function. Using the "here" function is a good reproducible research practice. 
   
   
+test change
+  
+  
 ```{r}
 library("here")
-mydata<-read.csv(here("hyper.csv"))
+mydata<-read.csv(here("data","hyper.csv"))
 ```
 
 
